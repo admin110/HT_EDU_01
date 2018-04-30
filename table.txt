@@ -5,7 +5,7 @@
 |──────────────────
 | 栏目表(ht_colum)
 |──────────────────
-| id name sort(排序) pid(二级分类) type(类型)  time
+| id name sort(排序) pid(二级分类) type(类型)  time  author_id
 |──────────────────
 |──────────────────
 | 用户表(ht_user)
