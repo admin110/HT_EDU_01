@@ -15,8 +15,45 @@ class User extends Base
     public function index()
     {
         //
-        return $this -> view -> fetch('member-list');
+        return $this -> view -> fetch('user_list');
     }
+
+    public function add()
+    {
+        //
+        return $this -> view -> fetch('user_add');
+    }
+
+    public function del()
+    {
+        //
+        return $this -> view -> fetch('user_del');
+    }
+
+    public function level()
+    {
+        //
+        return $this -> view -> fetch('user_level');
+    }
+
+    public function password()
+    {
+        //
+        return $this -> view -> fetch('user_password');
+    }
+
+    public function points()
+    {
+        //
+        return $this -> view -> fetch('user_points');
+    }
+
+    public function view()
+    {
+        //
+        return $this -> view -> fetch('user_view');
+    }
+
 
     /**
      * 显示创建资源表单页.
@@ -59,6 +96,7 @@ class User extends Base
     public function edit($id)
     {
         //
+        return $this -> view -> fetch('user_edit');
     }
 
     /**

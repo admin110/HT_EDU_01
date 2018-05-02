@@ -10,6 +10,7 @@ class Index extends Base
     {
         return $this -> view -> fetch('index');
     }
+
     public function login()
     {
         return $this -> view -> fetch('login');

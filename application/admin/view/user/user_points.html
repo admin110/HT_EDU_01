@@ -42,32 +42,32 @@
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu opened">
-                        <li >
-                            <a href="member-list.html">
+                        <li>
+                            <a href="user_list.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 会员列表
                             </a>
                         </li>
-                        <li class="current">
-                            <a href="member-del.html">
+                        <li>
+                            <a href="user_del.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 会员删除
                             </a>
                         </li>
                         <li>
-                            <a href="member-level.html">
+                            <a href="user_level.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 等级管理
                             </a>
                         </li>
-                        <li>
-                            <a href="member-points.html">
+                        <li class="current">
+                            <a href="user_points.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 积分管理
                             </a>
                         </li>
                         <li>
-                            <a href="member-view.html">
+                            <a href="user_view.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 浏览记录
                             </a>
@@ -212,7 +212,7 @@
                   </div>
                 </div> 
             </form>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="recoverAll()"><i class="layui-icon">&#xe640;</i>批量恢复</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button class="layui-btn" onclick="kiss_add('添加事件','kiss-add.html')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
@@ -223,25 +223,10 @@
                             ID
                         </th>
                         <th>
-                            用户名
+                            事件
                         </th>
                         <th>
-                            性别
-                        </th>
-                        <th>
-                            手机
-                        </th>
-                        <th>
-                            邮箱
-                        </th>
-                        <th>
-                            地址
-                        </th>
-                        <th>
-                            加入时间
-                        </th>
-                        <th>
-                            状态
+                            积分
                         </th>
                         <th>
                             操作
@@ -257,35 +242,17 @@
                             1
                         </td>
                         <td>
-                            <u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">
-                                小明
-                            </u>
+                            回复
                         </td>
                         <td >
-                            男
-                        </td>
-                        <td >
-                            13000000000
-                        </td>
-                        <td >
-                            admin@mail.com
-                        </td>
-                        <td >
-                            北京市 海淀区
-                        </td>
-                        <td>
-                            2017-01-01 11:11:42
-                        </td>
-                        <td class="td-status">
-                            <span class="layui-btn layui-btn-danger layui-btn-mini">
-                                已删除
-                            </span>
+                            5
                         </td>
                         <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_recover(this,'10001')" href="javascript:;" title="恢复">
-                                <i class="layui-icon">&#xe618;</i>
+                            <a title="编辑" href="javascript:;" onclick="kiss_edit('编辑','kiss-edit.html','4','','300')"
+                            style="text-decoration:none">
+                                <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a title="彻底删除" href="javascript:;" onclick="member_unset(this,'1')" 
+                            <a title="删除" href="javascript:;" onclick="kiss_del(this,'1')" 
                             style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
@@ -318,7 +285,6 @@
                 <div class="swiper-slide"><img class="item" src="./images/h.jpg" alt=""></div>
                 <div class="swiper-slide"><img class="item" src="./images/i.jpg" alt=""></div>
                 <div class="swiper-slide"><img class="item" src="./images/j.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/k.jpg" alt=""></div>
                 <div class="swiper-slide"><span class="reset">初始化</span></div>
             </div>
         </div>
@@ -367,28 +333,28 @@
           
         });
 
-        //批量恢复提交
-             function recoverAll () {
-                layer.confirm('确认要批量恢复吗？',function(index){
-                    //捉到所有被选中的，发异步进行恢复
-                    layer.msg('恢复成功', {icon: 1});
+        //批量删除提交
+             function delAll () {
+                layer.confirm('确认要删除吗？',function(index){
+                    //捉到所有被选中的，发异步进行删除
+                    layer.msg('删除成功', {icon: 1});
                 });
              }
-
-            /*用户-恢复*/
-            function member_recover(obj,id){
-                layer.confirm('确认要恢复吗？',function(index){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    layer.msg('已恢复!',{icon:1,time:1000});
-                });
+            // 等级-增加
+            function kiss_add (title,url,id,w,h) {
+                x_admin_show(title,url,w,h); 
             }
-            /*用户-彻底删除*/
-            function member_unset(obj,id){
-                layer.confirm('彻底删除无法恢复，确认要删除数据吗？',function(index){
+            // 等级-编辑
+            function kiss_edit (title,url,id,w,h) {
+                x_admin_show(title,url,w,h); 
+            }
+           
+            /*等级-删除*/
+            function kiss_del(obj,id){
+                layer.confirm('确认要删除吗？',function(index){
                     //发异步删除数据
                     $(obj).parents("tr").remove();
-                    layer.msg('已彻底删除',{icon:1,time:1000});
+                    layer.msg('已删除!',{icon:1,time:1000});
                 });
             }
         </script>
